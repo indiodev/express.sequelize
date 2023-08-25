@@ -1,7 +1,9 @@
+import { resolve } from 'path';
 import { Sequelize } from 'sequelize-typescript';
 
 import { Env } from '../env';
-import { User } from '../models/User';
+
+const model_path_files = `${resolve(process.cwd(), 'src/models/[^Base]*.ts')}`;
 
 export const SequelizeConnection = new Sequelize({
 	host: Env.PG_HOST,
@@ -11,5 +13,6 @@ export const SequelizeConnection = new Sequelize({
 	port: Env.PG_PORT,
 	schema: Env.PG_SCHEMA,
 	dialect: 'postgres',
-	models: [User],
+	models: [model_path_files],
+	// models: [`${resolve(process.cwd(), 'src/models/**/[^Base]*.ts')}`],
 });

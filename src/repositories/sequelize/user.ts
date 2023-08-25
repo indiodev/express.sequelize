@@ -1,3 +1,5 @@
+import { ApiToken } from '~/models/ApiToken';
+
 import { User } from '../../models/User';
 import type { RegisterType } from '../../schemas/user/register';
 import type { UserRepository } from '../user';
@@ -11,6 +13,16 @@ export class SequelizeUserRepository implements UserRepository {
 	}
 
 	async create(data: RegisterType): Promise<User> {
-		return await User.create(data);
+		return await User.create(
+			{
+				...data,
+				token: {
+					name: 'teste',
+					type: 'Baerer',
+					token: 'random_token',
+				},
+			},
+			{ include: [ApiToken] },
+		);
 	}
 }

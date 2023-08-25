@@ -3,11 +3,13 @@ import {
 	BeforeCreate,
 	BeforeUpdate,
 	Column,
+	HasOne,
 	IsEmail,
 	Table,
 	Unique,
 } from 'sequelize-typescript';
 
+import { ApiToken } from './ApiToken';
 import { Base } from './Base';
 
 @Table({
@@ -15,7 +17,6 @@ import { Base } from './Base';
 	tableName: 'users',
 })
 export class User extends Base {
-	@Unique
 	@Column({
 		allowNull: false,
 	})
@@ -26,11 +27,15 @@ export class User extends Base {
 	})
 	declare password: string;
 
+	@Unique
 	@IsEmail
 	@Column({
 		allowNull: false,
 	})
 	declare email: string;
+
+	@HasOne(() => ApiToken, 'user_id')
+	declare token: ApiToken;
 
 	@BeforeUpdate
 	@BeforeCreate
@@ -39,3 +44,6 @@ export class User extends Base {
 		user.password = password_hash;
 	}
 }
+
+// @HasOne(() => InitialValues, 'playerId')
+// initialValues: InitialValues;

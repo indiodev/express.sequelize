@@ -2,7 +2,7 @@ import { DataType } from 'sequelize-typescript';
 
 import type { Migrate } from '../umzug';
 
-const table_name = 'users';
+const table_name = 'api_tokens';
 
 export const up: Migrate = async ({ context: sequelize }) => {
 	await sequelize.createTable(table_name, {
@@ -13,26 +13,34 @@ export const up: Migrate = async ({ context: sequelize }) => {
 			unique: true,
 		},
 
+		user_id: {
+			type: DataType.UUID,
+			allowNull: false,
+
+			references: {
+				model: {
+					tableName: 'users',
+					schema: 'public',
+				},
+				key: 'id',
+			},
+			onDelete: 'cascade',
+			onUpdate: 'cascade',
+		},
+
 		name: {
 			type: DataType.STRING,
 			allowNull: false,
 		},
 
-		email: {
+		type: {
 			type: DataType.STRING,
 			allowNull: false,
-			unique: true,
-			validate: {
-				isEmail: true,
-			},
 		},
 
-		password: {
+		token: {
 			type: DataType.STRING,
 			allowNull: false,
-			validate: {
-				min: 6,
-			},
 		},
 
 		created_at: {
