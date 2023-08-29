@@ -1,14 +1,14 @@
 import { SequelizeTokenRepository } from '~/app/repositories/sequelize/token';
 import { SequelizeUserRepository } from '~/app/repositories/sequelize/user';
 import { BcryptService } from '~/app/services/implements/crypto';
-import { RegisterUseCase } from '~/app/use-cases/user/register';
+import { SignupUseCase } from '~/app/use-cases/auth/signup';
 
-export function MakeRegisterUseCase(): RegisterUseCase {
+export function MakeSignupUseCase(): SignupUseCase {
 	const userRepository = new SequelizeUserRepository();
 	const bcryptService = new BcryptService();
 	const tokenRepository = new SequelizeTokenRepository();
 
-	const useCase = new RegisterUseCase(
+	const useCase = new SignupUseCase(
 		userRepository,
 		bcryptService,
 		tokenRepository,

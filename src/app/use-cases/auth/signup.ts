@@ -5,7 +5,7 @@ import type { TokenRepository } from '~/app/repositories/token';
 import type { UserRepository } from '~/app/repositories/user';
 import type { CryptoService } from '~/app/services/crypto';
 
-export class RegisterUseCase {
+export class SignupUseCase {
 	constructor(
 		private usersRepository: UserRepository,
 		private cryptoService: CryptoService,
