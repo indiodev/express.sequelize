@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import cors from 'cors';
-import type { Application, Request, Response } from 'express';
+import type { Application, NextFunction, Request, Response } from 'express';
 import express from 'express';
 
-import { user_route } from './controllers/user/routes';
-import { Env } from './env';
+import { auth_route } from './app/controllers/http/auth/routes';
+import { AppError } from './app/errors/app';
+import { Env } from './config/env';
 
 const app: Application = express();
 
@@ -21,10 +23,10 @@ app.use(
 
 app.use(express.json());
 
-app.use(`/${Env.PREFIX}/users`, user_route);
+app.use(`/${Env.PREFIX}/auth`, auth_route);
 
 app.get('/', async (request: Request, response: Response) => {
-	return response.status(200).redirect('/v1');
+	return response.status(200).redirect(`/${Env.PREFIX}`);
 });
 
 app.get(
@@ -33,6 +35,20 @@ app.get(
 		return response.status(200).json({
 			message: 'Welcome to Express Sequelize API.',
 			version: '1.0.0',
+		});
+	},
+);
+
+app.use(
+	(err: Error, request: Request, response: Response, next: NextFunction) => {
+		if (err instanceof AppError) {
+			return response.status(err.statusCode).json({
+				message: err.message,
+			});
+		}
+		return response.status(500).json({
+			status: 'error',
+			message: `Internal server error - ${err.message}`,
 		});
 	},
 );

@@ -8,7 +8,11 @@ const envSchema = z.object({
 		.default('development'),
 
 	PREFIX: z.enum(['development', 'staging', 'v1']).default('development'),
-	JWT_SECRET: z.string(),
+
+	TOKEN_SECRET: z.string(),
+	TOKEN_EXPIRE_IN: z.coerce.number().default(1),
+	REFRESH_TOKEN_SECRET: z.string(),
+	REFRESH_TOKEN_EXPIRE_IN: z.coerce.number().default(7),
 
 	PORT: z.coerce.number().default(3333),
 

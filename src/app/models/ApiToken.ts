@@ -11,18 +11,17 @@ export class ApiToken extends Base {
 	@Column({
 		allowNull: false,
 	})
-	declare name: string;
-
-	@Column({
-		allowNull: false,
-		defaultValue: 'Baerer',
-	})
-	declare type: string;
-
-	@Column({
-		allowNull: false,
-	})
 	declare token: string;
+
+	@Column({
+		allowNull: false,
+	})
+	declare refresh_token: string;
+
+	@Column({
+		allowNull: false,
+	})
+	declare expire_date: Date;
 
 	@ForeignKey(() => User)
 	@Column({
@@ -34,10 +33,4 @@ export class ApiToken extends Base {
 
 	@BelongsTo(() => User)
 	declare user: User;
-	// @BeforeUpdate
-	// @BeforeCreate
-	// static async generatePasswordHash(user: User): Promise<void> {
-	// 	const password_hash = await hash(user.password, 6);
-	// 	user.password = password_hash;
-	// }
 }

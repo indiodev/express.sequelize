@@ -14,7 +14,6 @@ export class Base extends Model {
 	@Column({
 		type: DataType.UUID,
 		allowNull: false,
-		// unique: true,
 		defaultValue: DataType.UUIDV4,
 	})
 	declare id: string;

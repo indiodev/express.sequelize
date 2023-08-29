@@ -4,6 +4,6 @@ import { register } from './register';
 
 const route = Router();
 
-route.post('/', register);
+route.post('/register', register);
 
-export { route as user_route };
+export { route as auth_route };

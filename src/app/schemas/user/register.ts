@@ -7,3 +7,10 @@ export const RegisterSchema = z.object({
 });
 
 export type RegisterType = z.infer<typeof RegisterSchema>;
+
+export type RegisterUserToken = {
+	user: Pick<RegisterType & { id: string }, 'id' | 'email' | 'name'>;
+} & {
+	token: string;
+	refresh_token: string;
+};

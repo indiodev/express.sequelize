@@ -28,18 +28,18 @@ export const up: Migrate = async ({ context: sequelize }) => {
 			onUpdate: 'cascade',
 		},
 
-		name: {
-			type: DataType.STRING,
-			allowNull: false,
-		},
-
-		type: {
-			type: DataType.STRING,
-			allowNull: false,
-		},
-
 		token: {
 			type: DataType.STRING,
+			allowNull: false,
+		},
+
+		refresh_token: {
+			type: DataType.STRING,
+			allowNull: false,
+		},
+
+		expire_date: {
+			type: DataType.DATE,
 			allowNull: false,
 		},
 

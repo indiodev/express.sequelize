@@ -17,5 +17,5 @@
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true
 	},
-	"include": ["src", "src/database/umzug.ts", "migrate.js"]
+	"include": ["src", "src/database/umzug.ts", "migrate.js", "seed.js"]
 }

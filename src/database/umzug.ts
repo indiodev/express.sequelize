@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { SequelizeStorage, Umzug } from 'umzug';
 
 import { SequelizeConnection } from './connection';
@@ -6,7 +5,6 @@ import { SequelizeConnection } from './connection';
 export const Migrator = new Umzug({
 	migrations: {
 		glob: ['migrations/*.ts', { cwd: __dirname }],
-		// resolve: (params) => ({ ...params }),
 	},
 	context: SequelizeConnection.getQueryInterface(),
 	storage: new SequelizeStorage({
