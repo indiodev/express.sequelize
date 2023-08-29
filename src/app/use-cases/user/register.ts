@@ -1,12 +1,8 @@
 /* eslint-disable no-unused-vars */
-
+import type { SignupRequest, SignupResponse } from '~/app/dtos/auth/signup';
 import { UserAlreadyExistsError } from '~/app/errors/user/already-exists';
 import type { TokenRepository } from '~/app/repositories/token';
 import type { UserRepository } from '~/app/repositories/user';
-import type {
-	RegisterType,
-	RegisterUserToken,
-} from '~/app/schemas/user/register';
 import type { CryptoService } from '~/app/services/crypto';
 
 export class RegisterUseCase {
@@ -16,7 +12,7 @@ export class RegisterUseCase {
 		private tokenRepository: TokenRepository,
 	) {}
 
-	async execute(data: RegisterType): Promise<RegisterUserToken> {
+	async execute(data: SignupRequest): Promise<SignupResponse> {
 		const userWithSameEmail = await this.usersRepository.findBy(
 			'email',
 			data.email,

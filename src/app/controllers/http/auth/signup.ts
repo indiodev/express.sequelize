@@ -3,14 +3,14 @@ import { ZodError } from 'zod';
 
 import { UserAlreadyExistsError } from '~/app/errors/user/already-exists';
 import { MakeRegisterUseCase } from '~/app/factories/user/register';
-import { RegisterSchema } from '~/app/schemas/user/register';
+import { Validator } from '~/app/validators';
 
-export async function register(
+export async function signup(
 	request: Request,
 	response: Response,
 ): Promise<Response> {
 	try {
-		const data = RegisterSchema.parse(request.body);
+		const data = Validator.Signup.parse(request.body);
 
 		const registerUseCase = MakeRegisterUseCase();
 

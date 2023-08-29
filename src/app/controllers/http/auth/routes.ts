@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import { register } from './register';
+import { signup } from './signup';
 
 const route = Router();
 
-route.post('/register', register);
+route.post('/signup', signup);
 
 export { route as auth_route };
