@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import type { SignupRequest, SignupResponse } from '~/app/dtos/auth/signup';
-import { UserAlreadyExistsError } from '~/app/errors/user/already-exists';
+import { AppError } from '~/app/errors/app';
 import type { TokenRepository } from '~/app/repositories/token';
 import type { UserRepository } from '~/app/repositories/user';
 import type { CryptoService } from '~/app/services/crypto';
@@ -18,7 +18,7 @@ export class SignupUseCase {
 			data.email,
 		);
 
-		if (userWithSameEmail) throw new UserAlreadyExistsError();
+		if (userWithSameEmail) throw new AppError('E-mail already exists.', 409);
 
 		const password_hash = await this.cryptoService.hash(data.password, 6);
 
