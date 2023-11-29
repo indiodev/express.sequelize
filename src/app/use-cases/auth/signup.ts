@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import type { SignupRequest, SignupResponse } from '~/app/dtos/auth/signup';
-import { AppError } from '~/app/errors/app';
-import type { TokenRepository } from '~/app/repositories/token';
-import type { UserRepository } from '~/app/repositories/user';
-import type { CryptoService } from '~/app/services/crypto';
+
+import type { SignupRequest, SignupResponse } from '~/app/dtos';
+import { AppError } from '~/app/errors';
+import type { TokenRepository, UserRepository } from '~/app/repositories';
+import type { CryptoService } from '~/app/services';
 
 export class SignupUseCase {
 	constructor(

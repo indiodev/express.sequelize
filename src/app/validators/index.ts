@@ -1,5 +1,4 @@
-import { Signin } from './auth/signin';
-import { Signup } from './auth/signup';
+import { Signin, Signup } from './auth';
 
 export const Validator = {
 	Signin,

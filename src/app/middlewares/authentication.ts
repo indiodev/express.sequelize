@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import { Env } from '~/config/env';
+import { Env } from '~/config';
 
-import { AppError } from '../errors/app';
+import { AppError } from '../errors';
 
 export async function authentication(
 	request: Request,

@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 
-import { MakeSignupUseCase } from '~/app/factories/auth/signup';
+import { MakeSignupUseCase } from '~/app/factories';
 import { Validator } from '~/app/validators';
 
 export async function signup(

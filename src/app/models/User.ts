@@ -1,4 +1,11 @@
-import { Column, HasOne, IsEmail, Table, Unique } from 'sequelize-typescript';
+import {
+	Column,
+	DataType,
+	HasOne,
+	IsEmail,
+	Table,
+	Unique,
+} from 'sequelize-typescript';
 
 import { ApiToken } from './ApiToken';
 import { Base } from './Base';
@@ -10,11 +17,13 @@ import { Base } from './Base';
 export class User extends Base {
 	@Column({
 		allowNull: false,
+		type: DataType.STRING,
 	})
 	declare name: string;
 
 	@Column({
 		allowNull: false,
+		type: DataType.STRING,
 	})
 	declare password: string;
 
@@ -22,6 +31,7 @@ export class User extends Base {
 	@IsEmail
 	@Column({
 		allowNull: false,
+		type: DataType.STRING,
 	})
 	declare email: string;
 

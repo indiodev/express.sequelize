@@ -1,9 +1,8 @@
 import { sign } from 'jsonwebtoken';
 
-import type { Token } from '~/app/dtos/token';
-import type { User } from '~/app/dtos/user';
-import { ApiToken } from '~/app/models/ApiToken';
-import { Env } from '~/config/env';
+import type { Token, User } from '~/app/dtos';
+import { ApiToken } from '~/app/models';
+import { Env } from '~/config';
 
 import type { TokenRepository } from '../token';
 

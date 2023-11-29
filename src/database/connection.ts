@@ -5,7 +5,7 @@ import { Env } from '../config/env';
 
 const model_path_files = `${resolve(
 	process.cwd(),
-	'src/app/models/[^Base]*.ts',
+	'src/app/models/([^Base]|index)*.ts',
 )}`;
 
 export const SequelizeConnection = new Sequelize({
